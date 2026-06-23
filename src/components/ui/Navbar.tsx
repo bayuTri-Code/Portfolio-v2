@@ -20,7 +20,7 @@ export default function Navbar() {
         const el = document.getElementById(sectionId);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) {
+          if (rect.top <= 140) {
             setActiveSection(sectionId);
             break;
           }
@@ -37,152 +37,163 @@ export default function Navbar() {
     const id = href.replace("#", "");
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      // Offset for floating navbar
+      const yOffset = -90;
+      const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      initial={{ y: -100, x: "-50%" }}
+      animate={{ y: 0, x: "-50%" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-4xl transition-all duration-500 ${
+        isOpen ? "rounded-[24px]" : "rounded-full"
+      } border border-border/80 bg-surface/70 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.3)] ${
         scrolled
-          ? "bg-bg/80 backdrop-blur-xl border-b border-border"
-          : "bg-transparent"
+          ? "border-accent/20 bg-surface/85 shadow-[0_12px_40px_rgba(3,7,20,0.5)]"
+          : ""
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
-        {/* Logo */}
-        <a
-          href="#home"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("#home");
-          }}
-          className="group relative text-lg font-bold tracking-tight text-text"
-        >
-          <span className="text-accent">{"<"}</span>
-          BayuTri
-          <span className="text-accent">{" />"}</span>
-          <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-accent transition-all duration-300 group-hover:w-full" />
-        </a>
-
-        {/* Desktop Nav */}
-        <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => {
-            const sectionId = link.href.replace("#", "");
-            const isActive = activeSection === sectionId;
-
-            return (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  className={`relative rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 ${
-                    isActive
-                      ? "text-accent"
-                      : "text-text-secondary hover:text-text"
-                  }`}
-                >
-                  {link.label}
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-indicator"
-                      className="absolute inset-0 -z-10 rounded-lg bg-accent/10"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-
-        {/* CTA */}
-        <a
-          href="#contact"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("#contact");
-          }}
-          className="hidden rounded-lg bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-all duration-200 hover:bg-accent/20 md:block"
-        >
-          Let&apos;s Talk
-        </a>
-
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="rounded-lg p-2 text-text-secondary transition-colors hover:bg-surface hover:text-text md:hidden"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <FiX size={20} /> : <FiMenu size={20} />}
-        </button>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-b border-border bg-bg/95 backdrop-blur-xl md:hidden"
+      <div className="flex flex-col w-full">
+        {/* Main Nav Bar */}
+        <nav className="flex items-center justify-between px-5 py-3 md:px-6">
+          {/* Logo */}
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("#home");
+            }}
+            className="flex items-center gap-1.5 text-sm font-semibold tracking-wider uppercase text-text hover:text-accent transition-colors duration-300"
           >
-            <ul className="flex flex-col gap-1 px-6 py-4">
-              {navLinks.map((link, index) => (
-                <motion.li
-                  key={link.href}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                >
+            <span className="font-light text-text-secondary">Bayu</span>
+            <span className="font-extrabold text-accent">Tri</span>
+          </a>
+
+          {/* Desktop Nav Links */}
+          <ul className="hidden items-center gap-1 md:flex">
+            {navLinks.map((link) => {
+              const sectionId = link.href.replace("#", "");
+              const isActive = activeSection === sectionId;
+
+              return (
+                <li key={link.href}>
                   <a
                     href={link.href}
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                      activeSection === link.href.replace("#", "")
-                        ? "bg-accent/10 text-accent"
-                        : "text-text-secondary hover:bg-surface hover:text-text"
+                    className={`relative rounded-full px-4.5 py-2 text-[11px] font-semibold uppercase tracking-wider transition-colors duration-300 ${
+                      isActive ? "text-accent" : "text-text-secondary hover:text-text"
                     }`}
                   >
                     {link.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="active-pill"
+                        className="absolute inset-0 -z-10 rounded-full border border-accent/20 bg-accent-dim shadow-[0_0_12px_rgba(56,189,248,0.15)]"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* CTA & Mobile Toggle */}
+          <div className="flex items-center gap-3">
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("#contact");
+              }}
+              className="hidden rounded-full bg-accent px-4.5 py-2 text-[11px] font-bold uppercase tracking-wider text-bg shadow-md shadow-accent/20 transition-all duration-300 hover:scale-105 hover:bg-accent-soft hover:shadow-lg hover:shadow-accent/35 active:scale-95 sm:inline-flex"
+            >
+              Let&apos;s Talk
+            </a>
+
+            {/* Mobile Toggle */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface-alt/80 text-text-secondary transition-all hover:border-accent/30 hover:text-accent md:hidden"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <FiX size={16} /> : <FiMenu size={16} />}
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile Nav Menu Dropdown */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden border-t border-border/50 px-6 py-4 md:hidden"
+            >
+              <ul className="flex flex-col gap-2">
+                {navLinks.map((link, index) => {
+                  const sectionId = link.href.replace("#", "");
+                  const isActive = activeSection === sectionId;
+
+                  return (
+                    <motion.li
+                      key={link.href}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <a
+                        href={link.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNavClick(link.href);
+                        }}
+                        className={`block rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-all ${
+                          isActive
+                            ? "bg-accent-dim text-accent border border-accent/20"
+                            : "text-text-secondary hover:bg-surface-hover hover:text-text border border-transparent"
+                        }`}
+                      >
+                        {link.label}
+                      </a>
+                    </motion.li>
+                  );
+                })}
+                <motion.li
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                  className="pt-2"
+                >
+                  <a
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick("#contact");
+                    }}
+                    className="block rounded-xl bg-accent px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-bg shadow-md shadow-accent/20 transition-all hover:bg-accent-soft"
+                  >
+                    Let&apos;s Talk
                   </a>
                 </motion.li>
-              ))}
-              <motion.li
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.05 }}
-                className="mt-2"
-              >
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick("#contact");
-                  }}
-                  className="block rounded-lg bg-accent/10 px-3 py-2.5 text-center text-sm font-medium text-accent transition-all hover:bg-accent/20"
-                >
-                  Let&apos;s Talk
-                </a>
-              </motion.li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </motion.header>
   );
 }

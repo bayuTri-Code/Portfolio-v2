@@ -35,7 +35,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     label: "Email",
-    href: "mailto:bayutri@example.com",
+    href: "mailto:bayutrihardians@gmail.com",
     icon: "FiMail",
   },
 ];
@@ -44,14 +44,14 @@ export const socialLinks: SocialLink[] = [
 export const projects: Project[] = [
   {
     id: "1",
-    title: "E-Commerce Platform",
-    slug: "e-commerce-platform",
+    title: "Sukodono Master Carver Collective",
+    slug: "sukodono-master-carver-collective",
     description:
-      "Full-stack e-commerce application with product management, cart system, and payment integration built with Laravel & React.",
-    thumbnail: null,
-    githubUrl: "https://github.com/bayutri/ecommerce",
-    liveUrl: "https://ecommerce-demo.vercel.app",
-    techStack: ["Laravel", "React", "PostgreSQL", "Tailwind CSS", "Stripe"],
+      "A community portfolio platform showcasing the exquisite traditional woodcarving masterpieces of local carvers from Sukodono village, built to preserve cultural heritage and reach global buyers.",
+    thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop",
+    githubUrl: "https://github.com/bayutri/sukodono-master-carver",
+    liveUrl: "https://mastercarver.my.id",
+    techStack: ["Next.js", "Tailwind CSS", "Framer Motion", "PostgreSQL"],
     isFeatured: true,
     order: 1,
   },
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     slug: "task-management-app",
     description:
       "Real-time task management application with team collaboration features, drag-and-drop interface, and role-based access control.",
-    thumbnail: null,
+    thumbnail: "https://images.unsplash.com/photo-1611224885990-ab7363d1f2a9?q=80&w=600&auto=format&fit=crop",
     githubUrl: "https://github.com/bayutri/task-app",
     liveUrl: "https://task-app-demo.vercel.app",
     techStack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
@@ -74,7 +74,7 @@ export const projects: Project[] = [
     slug: "portfolio-v1",
     description:
       "First iteration of my personal portfolio website. Built with clean design principles and smooth animations.",
-    thumbnail: null,
+    thumbnail: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop",
     githubUrl: "https://github.com/bayutri/portfolio-v1",
     liveUrl: "https://bayutri-v1.vercel.app",
     techStack: ["React", "Tailwind CSS", "Framer Motion"],
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     slug: "rest-api-service",
     description:
       "Scalable RESTful API service with authentication, rate limiting, and comprehensive API documentation.",
-    thumbnail: null,
+    thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop",
     githubUrl: "https://github.com/bayutri/rest-api",
     liveUrl: null,
     techStack: ["Laravel", "PostgreSQL", "Redis", "Docker"],
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     slug: "chat-application",
     description:
       "Real-time chat application with group messaging, file sharing, and online status indicators.",
-    thumbnail: null,
+    thumbnail: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=600&auto=format&fit=crop",
     githubUrl: "https://github.com/bayutri/chat-app",
     liveUrl: null,
     techStack: ["Next.js", "Socket.io", "MongoDB", "Tailwind CSS"],
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     slug: "blog-cms",
     description:
       "Content management system with Markdown editor, image optimization, and SEO-friendly URLs.",
-    thumbnail: null,
+    thumbnail: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=600&auto=format&fit=crop",
     githubUrl: "https://github.com/bayutri/blog-cms",
     liveUrl: "https://blog-demo.vercel.app",
     techStack: ["Next.js", "MDX", "Tailwind CSS", "Vercel"],
@@ -145,17 +145,6 @@ export const experiences: Experience[] = [
     startDate: "2023-08",
     endDate: "2024-01",
     order: 2,
-  },
-  {
-    id: "3",
-    type: "WORK",
-    position: "Freelance Web Developer",
-    institution: "Self-employed",
-    description:
-      "Building websites and web applications for various clients using React, Next.js, Laravel, and Tailwind CSS.",
-    startDate: "2024-02",
-    endDate: null,
-    order: 3,
   },
 ];
 

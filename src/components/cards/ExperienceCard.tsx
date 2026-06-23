@@ -10,6 +10,12 @@ interface ExperienceCardProps {
   isLast: boolean;
 }
 
+// Hardcoded tags for Phase 2/Static UI representation
+const experienceTags: Record<string, string[]> = {
+  "1": ["OOP", "HTML/CSS", "JavaScript", "SQL", "Git"],
+  "2": ["Laravel", "PostgreSQL", "REST API", "Database Design", "Git"],
+};
+
 function formatDate(dateStr: string): string {
   const [year, month] = dateStr.split("-");
   const months = [
@@ -19,67 +25,78 @@ function formatDate(dateStr: string): string {
   return `${months[parseInt(month) - 1]} ${year}`;
 }
 
-export default function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
+export default function ExperienceCard({ experience, index }: ExperienceCardProps) {
   const isWork = experience.type === "WORK";
   const Icon = isWork ? FiBriefcase : FiBookOpen;
+  const tags = experienceTags[experience.id] || [];
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -16 }}
+      initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: index * 0.15 }}
-      className="relative flex gap-6"
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="relative flex gap-4 sm:gap-6"
     >
-      {/* Timeline line + dot */}
-      <div className="flex flex-col items-center">
-        <div
-          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-colors ${
-            isWork
-              ? "border-accent/30 bg-accent/10 text-accent"
-              : "border-border bg-surface text-text-secondary"
-          }`}
-        >
-          <Icon size={16} />
-        </div>
-        {!isLast && (
-          <div className="mt-2 w-px flex-1 bg-gradient-to-b from-border to-transparent" />
-        )}
+      {/* Icon Node (positioned directly above the timeline line) */}
+      <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-alt text-text-secondary shadow-md transition-all duration-300 group-hover:border-accent hover:border-accent hover:text-accent">
+        <Icon size={15} />
       </div>
 
-      {/* Content */}
-      <div className={`pb-10 ${isLast ? "pb-0" : ""}`}>
-        {/* Date range */}
-        <span className="text-xs font-medium uppercase tracking-wider text-text-muted">
-          {formatDate(experience.startDate)} —{" "}
-          {experience.endDate ? formatDate(experience.endDate) : "Present"}
-        </span>
+      {/* Card Content Container */}
+      <div className="w-full pb-2">
+        <div className="group relative rounded-2xl border border-border/80 bg-surface/40 p-5 md:p-6 backdrop-blur-sm shadow-sm transition-all duration-300 hover:border-accent/25 hover:bg-surface-hover/30 hover:shadow-[0_10px_30px_rgba(3,7,20,0.25)]">
+          {/* Subtle accent line on hover */}
+          <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-accent/0 to-transparent transition-all duration-500 group-hover:via-accent/40" />
 
-        {/* Position */}
-        <h3 className="mt-1.5 text-base font-semibold text-text">
-          {experience.position}
-        </h3>
+          {/* Header Row */}
+          <div className="flex flex-wrap items-center justify-between gap-2.5">
+            <span className="text-xs font-bold uppercase tracking-widest text-text-muted">
+              {formatDate(experience.startDate)} —{" "}
+              {experience.endDate ? formatDate(experience.endDate) : "Present"}
+            </span>
 
-        {/* Institution */}
-        <p className="mt-0.5 text-sm text-accent/80">{experience.institution}</p>
+            {/* Type badge */}
+            <span
+              className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${
+                isWork
+                  ? "bg-accent-dim text-accent border border-accent/15"
+                  : "bg-surface-alt text-text-muted border border-border/50"
+              }`}
+            >
+              {experience.type === "WORK" ? "Internship / Work" : "Education"}
+            </span>
+          </div>
 
-        {/* Description */}
-        {experience.description && (
-          <p className="mt-3 max-w-lg text-sm leading-relaxed text-text-secondary">
-            {experience.description}
+          {/* Job Title & Company */}
+          <h3 className="mt-3 text-base md:text-lg font-extrabold text-text tracking-tight group-hover:text-accent transition-colors duration-300">
+            {experience.position}
+          </h3>
+          <p className="text-sm font-semibold text-accent-soft/90 mt-0.5">
+            {experience.institution}
           </p>
-        )}
 
-        {/* Type badge */}
-        <span
-          className={`mt-3 inline-block rounded-md px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider ${
-            isWork
-              ? "bg-accent/10 text-accent"
-              : "bg-surface text-text-muted"
-          }`}
-        >
-          {experience.type}
-        </span>
+          {/* Job Description */}
+          {experience.description && (
+            <p className="mt-3.5 text-xs md:text-sm leading-relaxed text-text-secondary">
+              {experience.description}
+            </p>
+          )}
+
+          {/* Technology Badges */}
+          {tags.length > 0 && (
+            <div className="mt-5 flex flex-wrap gap-1.5 pt-4 border-t border-border/30">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-lg border border-border/50 bg-surface-alt/70 px-2.5 py-1 text-[10px] font-semibold text-text-secondary hover:border-accent/20 hover:text-text transition-colors duration-200"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </motion.div>
   );

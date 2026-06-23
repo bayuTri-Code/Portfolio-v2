@@ -5,7 +5,7 @@ const socialIcons = [
   { icon: <FiGithub size={18} />, href: "https://github.com/bayutri", label: "GitHub" },
   { icon: <FiLinkedin size={18} />, href: "https://linkedin.com/in/bayutri", label: "LinkedIn" },
   { icon: <FiInstagram size={18} />, href: "https://instagram.com/bayutri", label: "Instagram" },
-  { icon: <FiMail size={18} />, href: "mailto:bayutri@example.com", label: "Email" },
+  { icon: <FiMail size={18} />, href: "mailto:bayutrihardians@gmail.com", label: "Email" },
 ];
 
 const techStack = [
@@ -21,70 +21,81 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-surface-alt">
+    <footer className="relative overflow-hidden border-t border-border bg-gradient-to-b from-surface to-bg">
+      {/* Ambient background glow */}
+      <div className="absolute -bottom-48 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         {/* Top section — 3 columns */}
-        <div className="grid gap-10 py-16 md:grid-cols-3">
-          {/* Column 1 — Brand & description */}
-          <div className="md:col-span-1">
-            <a href="#home" className="text-lg font-bold tracking-tight text-text">
-              <span className="text-accent">{"<"}</span>
-              BayuTri
-              <span className="text-accent">{" />"}</span>
+        <div className="grid gap-12 py-16 md:grid-cols-3 md:gap-8">
+          {/* Column 1 — Brand & Status */}
+          <div className="md:col-span-1 flex flex-col items-start">
+            <a
+              href="#home"
+              className="flex items-center gap-1.5 text-base font-semibold tracking-wider uppercase text-text hover:text-accent transition-colors duration-300"
+            >
+              <span className="font-light text-text-secondary">Bayu</span>
+              <span className="font-extrabold text-accent">Tri</span>
             </a>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-text-secondary">
+            
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-text-secondary">
               Building impactful digital experiences with modern web technologies.
               Focused on performance, scalability, and premium design.
             </p>
+
+ 
+
             <div className="mt-4 flex items-center gap-1.5 text-xs text-text-muted">
-              <FiMapPin size={12} />
-              <span>Yogyakarta, Indonesia</span>
+              <FiMapPin size={12} className="text-accent/60" />
+              <span>Jepara, Indonesia</span>
             </div>
           </div>
 
           {/* Column 2 — Quick Links */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
-              Quick Links
-            </h3>
-            <ul className="mt-4 space-y-2.5">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="group inline-flex items-center gap-1 text-sm text-text-secondary transition-colors hover:text-accent"
-                  >
-                    {link.label}
-                    <FiArrowUpRight
-                      size={12}
-                      className="opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
+          <div className="flex flex-col md:items-center">
+            <div className="w-full max-w-[160px] md:mx-auto">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-text-muted">
+                Navigation
+              </h3>
+              <ul className="mt-5 space-y-3.5">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className="group inline-flex items-center gap-1 text-sm text-text-secondary transition-all hover:text-accent hover:translate-x-0.5"
+                    >
+                      {link.label}
+                      <FiArrowUpRight
+                        size={12}
+                        className="opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Column 3 — Built With & Socials */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
-              Built With
+          <div className="flex flex-col">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-text-muted">
+              Core Tech
             </h3>
             <div className="mt-4 flex flex-wrap gap-2">
               {techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-md border border-border bg-surface px-2.5 py-1 text-xs text-text-secondary"
+                  className="rounded-full border border-border bg-surface-alt px-3.5 py-1 text-[11px] font-medium text-text-secondary transition-colors hover:border-accent/30 hover:text-text"
                 >
                   {tech}
                 </span>
               ))}
             </div>
 
-            <h3 className="mt-8 text-xs font-semibold uppercase tracking-wider text-text-muted">
-              Connect
+            <h3 className="mt-8 text-xs font-bold uppercase tracking-widest text-text-muted">
+              Let&apos;s Connect
             </h3>
-            <div className="mt-3 flex items-center gap-2.5">
+            <div className="mt-4 flex items-center gap-3">
               {socialIcons.map((social) => (
                 <a
                   key={social.label}
@@ -92,7 +103,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-text-secondary transition-all duration-200 hover:border-accent/30 hover:bg-accent/10 hover:text-accent"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface-alt text-text-secondary transition-all duration-300 hover:border-accent hover:bg-accent-dim hover:text-accent hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(56,189,248,0.2)]"
                 >
                   {social.icon}
                 </a>
@@ -102,13 +113,13 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-border" />
+        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center gap-3 py-6 text-center text-xs text-text-muted md:flex-row md:justify-between">
+        <div className="flex flex-col items-center gap-3 py-8 text-center text-xs text-text-muted md:flex-row md:justify-between">
           <p>© {currentYear} Bayu Tri. All rights reserved.</p>
           <p className="flex items-center gap-1">
-            Crafted with <FiHeart size={12} className="text-accent" /> using Next.js & Tailwind CSS
+            Crafted with <FiHeart size={12} className="text-accent animate-pulse" /> using Next.js & Tailwind CSS
           </p>
         </div>
       </div>

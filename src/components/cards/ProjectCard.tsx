@@ -29,8 +29,17 @@ export default function ProjectCard({ project, index, featured = false }: Projec
             : "aspect-[16/10]"
         }`}
       >
-        {/* Placeholder gradient — will be replaced by real image */}
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-surface to-surface-alt" />
+        {project.thumbnail ? (
+          <img
+            src={project.thumbnail}
+            alt={project.title}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          /* Placeholder gradient — will be replaced by real image */
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-surface to-surface-alt" />
+        )}
 
         {/* Decorative grid pattern */}
         <div
