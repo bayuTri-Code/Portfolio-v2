@@ -71,7 +71,7 @@ export const projects: Project[] = [
       "First iteration of my personal portfolio website. Built with clean design principles and smooth animations.",
     thumbnail: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop",
     githubUrl: "https://github.com/bayuTri-Code/portfolio-v1",
-    liveUrl: "https://bayutri-v1.vercel.app",
+    liveUrl: "https://portfolio-bayutri.vercel.app/",
     techStack: ["React", "Tailwind CSS", "Framer Motion"],
     isFeatured: true,
     order: 3,
