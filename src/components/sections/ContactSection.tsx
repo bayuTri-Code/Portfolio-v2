@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FiSend, FiMail, FiUser, FiMessageSquare, FiGithub, FiLinkedin, FiClock, FiArrowUpRight } from "react-icons/fi";
+import { FiSend, FiMail, FiUser, FiMessageSquare, FiGithub, FiInstagram, FiClock, FiArrowUpRight } from "react-icons/fi";
 import SectionWrapper from "@/src/components/ui/SectionWrapper";
 import { sendContactEmail } from "@/app/actions";
 
@@ -87,7 +87,7 @@ export default function ContactSection() {
 
               {/* GitHub Link */}
               <a
-                href="https://github.com/bayutri"
+                href="https://github.com/bayuTri-Code/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center justify-between rounded-xl border border-border/60 bg-surface/30 p-3.5 hover:border-accent/25 hover:bg-surface-hover/30 transition-all duration-300"
@@ -98,26 +98,26 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <span className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">GitHub</span>
-                    <span className="text-xs font-bold text-text-secondary group-hover:text-text transition-colors">github.com/bayutri</span>
+                    <span className="text-xs font-bold text-text-secondary group-hover:text-text transition-colors">github.com/bayuTri-Code/</span>
                   </div>
                 </div>
                 <FiArrowUpRight size={14} className="text-text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </a>
 
-              {/* LinkedIn Link */}
+              {/* Instagram Link */}
               <a
-                href="https://linkedin.com/in/bayutri"
+                href="https://www.instagram.com/bayu_tri_syh/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center justify-between rounded-xl border border-border/60 bg-surface/30 p-3.5 hover:border-accent/25 hover:bg-surface-hover/30 transition-all duration-300"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-surface-alt text-text-secondary border border-border/60">
-                    <FiLinkedin size={14} />
+                    <FiInstagram size={14} />
                   </div>
                   <div>
-                    <span className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">LinkedIn</span>
-                    <span className="text-xs font-bold text-text-secondary group-hover:text-text transition-colors">linkedin.com/in/bayutri</span>
+                    <span className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Instagram</span>
+                    <span className="text-xs font-bold text-text-secondary group-hover:text-text transition-colors">instagram.com/bayu_tri_syh</span>
                   </div>
                 </div>
                 <FiArrowUpRight size={14} className="text-text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />

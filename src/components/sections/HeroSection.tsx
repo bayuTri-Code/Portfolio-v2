@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiArrowRight, FiGithub, FiLinkedin, FiActivity, FiDatabase, FiServer, FiCpu } from "react-icons/fi";
+import { FiArrowRight, FiGithub, FiInstagram, FiMail, FiActivity, FiDatabase, FiServer, FiCpu, FiCode } from "react-icons/fi";
 import { heroData } from "@/src/data/dummy";
 
 export default function HeroSection() {
@@ -126,7 +126,7 @@ export default function HeroSection() {
               <span className="h-px w-8 bg-border" />
               <div className="flex gap-2.5">
                 <a
-                  href="https://github.com/bayutri"
+                  href="https://github.com/bayuTri-Code/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface-alt/80 text-text-secondary transition-all hover:border-accent hover:text-accent"
@@ -135,13 +135,20 @@ export default function HeroSection() {
                   <FiGithub size={14} />
                 </a>
                 <a
-                  href="https://linkedin.com/in/bayutri"
+                  href="https://www.instagram.com/bayu_tri_syh/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface-alt/80 text-text-secondary transition-all hover:border-accent hover:text-accent"
-                  aria-label="LinkedIn"
+                  aria-label="Instagram"
                 >
-                  <FiLinkedin size={14} />
+                  <FiInstagram size={14} />
+                </a>
+                <a
+                  href="mailto:bayutrihardians@gmail.com"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface-alt/80 text-text-secondary transition-all hover:border-accent hover:text-accent"
+                  aria-label="Email"
+                >
+                  <FiMail size={14} />
                 </a>
               </div>
             </motion.div>
@@ -247,13 +254,13 @@ export default function HeroSection() {
 
               {/* Decorative side tags */}
               <div className="absolute -top-3.5 -left-3.5 rounded-lg border border-border/80 bg-surface p-2.5 shadow-lg flex items-center gap-2">
-                <FiCpu className="text-accent" size={14} />
-                <span className="text-[9px] font-bold uppercase tracking-wider text-text-secondary">Laravel API</span>
+                <FiCode className="text-accent" size={14} />
+                <span className="text-[9px] font-bold uppercase tracking-wider text-text-secondary">Junior Software Developer</span>
               </div>
 
               <div className="absolute -bottom-3.5 -right-3.5 rounded-lg border border-border/80 bg-surface p-2.5 shadow-lg flex items-center gap-2">
                 <FiServer className="text-accent" size={14} />
-                <span className="text-[9px] font-bold uppercase tracking-wider text-text-secondary">Vercel Edge</span>
+                <span className="text-[9px] font-bold uppercase tracking-wider text-text-secondary">Fullstack Developer</span>
               </div>
 
             </div>

@@ -1,10 +1,9 @@
-import { FiGithub, FiLinkedin, FiInstagram, FiMail, FiHeart, FiMapPin, FiArrowUpRight } from "react-icons/fi";
+import { FiGithub, FiInstagram, FiMail, FiHeart, FiMapPin, FiArrowUpRight } from "react-icons/fi";
 import { navLinks } from "@/src/data/dummy";
 
 const socialIcons = [
-  { icon: <FiGithub size={18} />, href: "https://github.com/bayutri", label: "GitHub" },
-  { icon: <FiLinkedin size={18} />, href: "https://linkedin.com/in/bayutri", label: "LinkedIn" },
-  { icon: <FiInstagram size={18} />, href: "https://instagram.com/bayutri", label: "Instagram" },
+  { icon: <FiGithub size={18} />, href: "https://github.com/bayuTri-Code/", label: "GitHub" },
+  { icon: <FiInstagram size={18} />, href: "https://www.instagram.com/bayu_tri_syh/", label: "Instagram" },
   { icon: <FiMail size={18} />, href: "mailto:bayutrihardians@gmail.com", label: "Email" },
 ];
 
